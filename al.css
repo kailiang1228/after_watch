@@ -8,7 +8,7 @@ body {
 
 header {
     position: relative;
-    margin-bottom: 80px;  /* 保留原有的較大底部邊距 */
+    margin-bottom: 20px;
 }
 
 h1 {
@@ -24,14 +24,10 @@ h2 {
 }
 
 #add-item-container {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;  /* 將容器移到標題下方 */
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 10px;
-    margin-top: 20px;  /* 與標題保持一定距離 */
+    margin-bottom: 20px;
 }
 
 #category-select, #new-item-title, #addItem, #resetItems {
@@ -102,47 +98,40 @@ h2 {
     background-color: #ff3333;
 }
 
-.short-title {
-    display: none;
-}
-
 @media (max-width: 600px) {
-    header {
-        margin-bottom: 220px;  /* 進一步增加底部邊距 */
+    body {
+        padding-top: 200px;  /* 為固定的添加項目區域留出空間 */
     }
 
-    .full-title {
-        display: none;
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #f0f0f0;
+        padding: 10px;
+        z-index: 1000;
     }
-    .short-title {
-        display: inline;
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
     }
 
     #add-item-container {
         grid-template-columns: 1fr;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        padding: 10px;
-        background-color: #f0f0f0;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     #category-select, #new-item-title, #addItem, #resetItems {
         grid-column: 1;
         width: 100%;
         margin-bottom: 10px;
-        box-sizing: border-box;  /* 確保padding不會增加元素的總寬度 */
-    }
-
-    #new-item-title {
-        height: 40px;  /* 增加輸入框高度 */
+        height: 40px;
     }
 
     #addItem, #resetItems {
-        height: 50px;  /* 增加按鈕高度 */
-        font-size: 18px;  /* 增加按鈕字體大小 */
+        height: 50px;
+        font-size: 18px;
     }
 
     .item {
