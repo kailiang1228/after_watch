@@ -1,4 +1,12 @@
 /* 整體設定 */
+body {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
 header {
     position: relative;
     margin-bottom: 30px;
@@ -14,50 +22,6 @@ h1 {
 h2 {
     color: #666;
     margin-top: 30px;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    max-width: 800px;
-    margin: 0 auto; /* 居中對齊 */
-    padding: 20px;
-    background-color: #f0f0f0;
-}
-
-/* class "." : 可重複使用樣式 
-   id "#" : 只用一次的樣式
-
-   也可全用class "."，但要小心命名，避免重複，
-   或使用id "#"，但要小心命名，避免重複，
-   只是會增加HTML命名複雜度，
-   在JS中要快速找到對應的元素，
-   可能需要使用id "#" 來精確指定。
-*/
-
-
-/* 項目 */
-.item {
-    background-color: white;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 添加陰影效果 */
-    transition: transform 0.3s ease; /* 添加過渡效果 */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* 項目懸停效果 */
-.item:hover {
-    transform: translateY(-5px); /* 鼠標懸停時向上移動 */
-}
-
-/* 高亮項目 */
-.highlight {
-    border-left: 5px solid #ffd700; /* 高亮項目的左邊框 */
-    padding-left: 15px;
 }
 
 /* 新增項目按鈕 */
@@ -80,17 +44,16 @@ body {
 }
 
 #category-select {
-    flex-grow: 1; /* 在裝置寬度小於600px時，顯示短標題 */
+    flex-grow: 1;
 }
 
 #new-item-title {
-    flex-grow: 2; /* 在裝置寬度小於600px時，顯示短標題 */
+    flex-grow: 2;
 }
 
 #addItem, #resetItems {
-    flex-basis: 100%; /* 在裝置寬度小於600px時，顯示短標題 */
+    flex-basis: 100%;
 }
-
 
 /* 新增項目按鈕 */
 #addItem {
@@ -105,6 +68,29 @@ body {
     background-color: #45a049;
 }
 
+/* 項目 */
+.item {
+    background-color: white;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 項目懸停效果 */
+.item:hover {
+    transform: translateY(-5px);
+}
+
+/* 高亮項目 */
+.highlight {
+    border-left: 5px solid #ffd700;
+    padding-left: 15px;
+}
 
 /* 刪除按鈕 */
 .delete-btn {
@@ -136,7 +122,6 @@ body {
 #resetItems:hover {
     background-color: #f57c00;
 }
-
 
 /* 為了在不同裝置大小顯示不同標題 */
 .short-title {
