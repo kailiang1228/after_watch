@@ -7,7 +7,6 @@ body {
 }
 
 header {
-    position: relative;
     margin-bottom: 20px;
 }
 
@@ -99,29 +98,9 @@ h2 {
 }
 
 @media (max-width: 600px) {
-    body {
-        padding-top: 200px;  /* 為固定的添加項目區域留出空間 */
-    }
-
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background-color: #f0f0f0;
-        padding: 10px;
-        z-index: 1000;
-    }
-
-    h1 {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-
     #add-item-container {
         grid-template-columns: 1fr;
     }
-
 
     #category-select, #addItem, #resetItems {
         grid-column: 1; 
@@ -132,7 +111,7 @@ h2 {
 
     #new-item-title {
         grid-column: 1; 
-        width: 10%; /* 寬度為10% */
+        width: 60%; /* 寬度為60% */
         margin-bottom: 10px;
         height: 40px; 
     }
