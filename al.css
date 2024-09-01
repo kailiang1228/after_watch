@@ -108,7 +108,7 @@ h2 {
 
 @media (max-width: 600px) {
     header {
-        margin-bottom: 200px;  /* 增加底部邊距，為移動版留出更多空間 */
+        margin-bottom: 220px;  /* 進一步增加底部邊距 */
     }
 
     .full-title {
@@ -133,6 +133,16 @@ h2 {
         grid-column: 1;
         width: 100%;
         margin-bottom: 10px;
+        box-sizing: border-box;  /* 確保padding不會增加元素的總寬度 */
+    }
+
+    #new-item-title {
+        height: 40px;  /* 增加輸入框高度 */
+    }
+
+    #addItem, #resetItems {
+        height: 50px;  /* 增加按鈕高度 */
+        font-size: 18px;  /* 增加按鈕字體大小 */
     }
 
     .item {
