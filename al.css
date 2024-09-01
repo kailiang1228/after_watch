@@ -111,7 +111,7 @@ h2 {
 
     #new-item-title {
         grid-column: 1; 
-        width: 60%; /* 寬度為60% */
+        width: 100%; /* 寬度為10% */
         margin-bottom: 10px;
         height: 40px; 
     }
