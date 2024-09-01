@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- 宣告文件類型為 HTML5 -->
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <!-- 設定文件的字符編碼為 UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 設定視窗的寬度為裝置的寬度，初始縮放比例為 1.0 -->
+    <title>待看清單</title>
+    <link rel="stylesheet" href="al.css">
+    <!-- 連結到 CSS 文件 -->
+</head>
+<body>
+    <header>
+        <h1>待看清單</h1>
+        <div id="add-item-container">
+            <select id="category-select">
+                <option value="">選擇類別</option>
+                <option value="movie">電影</option>
+                <option value="drama">劇</option>
+                <option value="animation">動畫</option>
+            </select>
+            <input type="text" id="new-item-title" placeholder="輸入標題">
+            <button id="addItem">新增項目</button>
+            <button id="resetItems">重置清單</button>
+        </div>
+    </header>
+
+    <div><br></div>
+
+    <!-- 電影部分 -->
+    <section id="movies">
+        <h2>電影：</h2>
+        <!-- 每個 div 代表一個項目 -->
+        <!-- 
+        <div class="item">上海灘</div>
+        <div class="item highlight">夏日重現</div>
+        <div class="item highlight">花木蘭</div>
+        <div class="item highlight">新福音戰士:序</div>
+        <div class="item highlight">新福音戰士:終</div>
+        <div class="item">街區男孩</div>
+        <div class="item highlight">哈利波特</div>
+        <div class="item">少年耶安啦</div> 
+        -->
+        
+        <div id="movie-list"></div>
+    </section>
+
+    <div><br></div>
+    <!-- 換行 -->
+
+    <!-- 劇部分 -->
+    <section id="dramas">
+        <h2>劇：</h2>
+        <!-- 每個 div 代表一個項目 -->
+        <!--
+        <div class="item">紙房子</div>
+        <div class="item highlight">絕命毒師</div>
+        <div class="item">痞子英雄_5</div>
+        <div class="item">新邊珠格格</div>
+        <div class="item highlight">越獄風雲</div>
+        <div class="item highlight">城市的主宰</div>
+        <div class="item highlight">東京罪惡</div>
+        <div class="item highlight">黑道家族</div>
+        <div class="item highlight">火線</div>
+        <div class="item">巔峰對決2023、24</div>
+        <div class="item">惠美李藝彩派</div> 
+        <div class="item highlight">PROUDCE 48</div>
+        <div class="item">大谷翔平:超越夢想</div>
+        <div class="item highlight">切爾諾貝利</div>
+        <div class="item highlight">勇者義彥</div>
+        -->
+
+        <div id="drama-list"></div>
+    </section>
+
+    <div><br></div>
+    <!-- 換行 -->
+
+    <!-- 動畫部分 -->
+    <section id="animations">
+        <h2>動畫：</h2>
+        <!-- 每個 div 代表一個項目 -->
+<!--         
+        <div class="item">雙城之戰</div>
+        <div class="item highlight">銀魂</div>
+        <div class="item highlight">烏龍派出所</div>
+        <div class="item">探險活寶</div> 
+        <div class="item">鋼彈SEED</div>
+        <div class="item highlight">賽馬娘OVA</div>
+        <div class="item highlight">U149</div>
+        <div class="item">少女與戰車</div>
+        <div class="item">五等分</div>
+        <div class="item highlight">未聞花名</div>
+        <div class="item">四月妹妹</div>
+        <div class="item">涼宮</div>
+        <div class="item">魯路修</div>
+        <div class="item highlight">法蘭秀秀</div>
+        <div class="item">入間同學</div>
+        <div class="item highlight">我內心的糟糕念頭</div>
+        <div class="item highlight">農夫戰紀</div>
+        <div class="item">天國大魔境</div>
+        <div class="item">躍動青春</div>
+        <div class="item">我家英雄</div>
+        <div class="item">無頭騎士</div>
+        <div class="item">鍊鋸人</div>
+        <div class="item">清音社</div>
+        <div class="item">新石記</div>
+        <div class="item">四月謊言</div>
+        <div class="item">Z鋼 33</div>
+        <div class="item">鋼鍊37</div>
+        <div class="item">夢幻島</div>
+        -->
+
+        <div id="animation-list"></div>
+    </section>
+
+    <div><br></div>
+    <!-- 換行 -->
+
+    <script src="al.js"></script>
+    <!-- 連結到 JavaScript 文件 -->
+</body>
+</html>
