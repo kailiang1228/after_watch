@@ -1,10 +1,7 @@
 /* 整體設定 */
-body {
-    font-family: 'Arial', sans-serif;
-    max-width: 800px;
-    margin: 0 auto; /* 居中對齊 */
-    padding: 20px;
-    background-color: #f0f0f0;
+header {
+    position: relative;
+    margin-bottom: 30px;
 }
 
 h1 {
@@ -19,9 +16,12 @@ h2 {
     margin-top: 30px;
 }
 
-header {
-    position: relative;
-    margin-bottom: 30px;
+body {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 0 auto; /* 居中對齊 */
+    padding: 20px;
+    background-color: #f0f0f0;
 }
 
 /* class "." : 可重複使用樣式 
@@ -41,6 +41,7 @@ header {
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
+    margin-bottom: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 添加陰影效果 */
     transition: transform 0.3s ease; /* 添加過渡效果 */
     display: flex;
@@ -66,14 +67,30 @@ header {
     bottom: -40px;
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* 新增項目按鈕 */
 #category-select, #new-item-title, #addItem {
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    font-size: 16px;
 }
+
+#category-select {
+    flex-grow: 1; /* 在裝置寬度小於600px時，顯示短標題 */
+}
+
+#new-item-title {
+    flex-grow: 2; /* 在裝置寬度小於600px時，顯示短標題 */
+}
+
+#addItem, #resetItems {
+    flex-basis: 100%; /* 在裝置寬度小於600px時，顯示短標題 */
+}
+
 
 /* 新增項目按鈕 */
 #addItem {
@@ -118,4 +135,42 @@ header {
 /* 重置按鈕懸停效果 */
 #resetItems:hover {
     background-color: #f57c00;
+}
+
+
+/* 為了在不同裝置大小顯示不同標題 */
+.short-title {
+    display: none;
+}
+
+/* 在裝置寬度小於600px時，顯示短標題 */
+@media (max-width: 600px) {
+    .full-title {
+        display: none;
+    }
+    .short-title {
+        display: inline;
+    }
+
+    /* 項目 */
+    .item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* 刪除按鈕 */
+    .delete-btn {
+        margin-top: 10px;
+        align-self: flex-end;
+    }
+
+    /* 新增項目按鈕 */
+    #add-item-container {
+        flex-direction: column; 
+    }
+
+    /* 新增項目按鈕 */
+    #category-select, #new-item-title, #addItem, #resetItems {
+        width: 100%;
+    }
 }
