@@ -122,11 +122,19 @@ h2 {
         grid-template-columns: 1fr;
     }
 
-    #category-select, #new-item-title, #addItem, #resetItems {
-        grid-column: 1;
-        width: 100%;
+
+    #category-select, #addItem, #resetItems {
+        grid-column: 1; 
+        width: 100%; /* 寬度為100% */
         margin-bottom: 10px;
-        height: 40px;
+        height: 40px; 
+    }
+
+    #new-item-title {
+        grid-column: 1; 
+        width: 50%; /* 寬度為50% */
+        margin-bottom: 10px;
+        height: 40px; 
     }
 
     #addItem, #resetItems {
