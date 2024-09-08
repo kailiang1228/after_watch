@@ -55,7 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 輸出片單功能
     exportButton.addEventListener('click', function() {
         const items = JSON.parse(localStorage.getItem('watchList'));
-        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(items));
+        const formattedJson = JSON.stringify(items, null, 2); // 使用 2 空格縮進
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(formattedJson);
         const downloadAnchorNode = document.createElement('a');
         downloadAnchorNode.setAttribute("href", dataStr);
         downloadAnchorNode.setAttribute("download", "watchlist.json");
@@ -77,31 +78,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     let items = JSON.parse(e.target.result);
                     
-                    // 檢查並轉換格式
-                    if (!items.movie && !items.drama && !items.animation) {
-                        // 假設是簡單的標題列表
-                        items = {
-                            movie: items.movie || [],
-                            drama: items.drama || [],
-                            animation: items.animation || []
-                        };
-                    }
-                    
-                    // 確保每個項目都有正確的格式
+                    // 確保所有必要的類別都存在
                     ['movie', 'drama', 'animation'].forEach(category => {
+                        if (!Array.isArray(items[category])) {
+                            items[category] = [];
+                        }
+                    });
+                    
+                    // 驗證和清理每個項目
+                    Object.keys(items).forEach(category => {
                         items[category] = items[category].map(item => {
-                            if (typeof item === 'string') {
-                                return { title: item, highlighted: false };
-                            } else if (typeof item === 'object') {
-                                return { 
-                                    title: item.title || item.name || '',
-                                    highlighted: !!item.highlighted
+                            if (typeof item === 'object' && item !== null) {
+                                return {
+                                    title: String(item.title || ''),
+                                    highlighted: Boolean(item.highlighted)
                                 };
                             }
                             return null;
-                        }).filter(item => item !== null);
+                        }).filter(item => item !== null && item.title.trim() !== '');
                     });
-    
+                
                     localStorage.setItem('watchList', JSON.stringify(items));
                     loadItems();
                     alert('片單已成功讀取');
