@@ -3,12 +3,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const newItemTitle = document.getElementById('new-item-title');
     const addItemButton = document.getElementById('addItem');
     const resetButton = document.getElementById('resetItems');
+    const exportButton = document.getElementById('exportList');
+    const importButton = document.getElementById('importList');
+    const importFile = document.getElementById('importFile');
 
     // 初始數據
     const initialData = {
         movie: ['上海灘', '夏日重現', '花木蘭', '新福音戰士:序', '新福音戰士:終', '街區男孩', '哈利波特', '少年耶安啦'],
-        drama: ['紙房子', '絕命毒師', '痞子英雄', '新邊珠格格', '越獄風雲', '城市的主宰', '東京罪惡', '黑道家族', '火線', '巔峰對決2023、24', '惠美李藝彩派', 'PROUDCE 48', '大谷翔平:超越夢想', '切爾諾貝利', '勇者義彥'],
-        animation: ['雙城之戰', '銀魂', '烏龍派出所', '探險活寶', '鋼彈SEED', '賽馬娘OVA', 'U149', '少女與戰車', '五等分', '未聞花名', '四月妹妹', '涼宮', '魯路修', '法蘭秀秀', '入間同學', '我內心的糟糕念頭', '農夫戰紀', '天國大魔境', '躍動青春', '我家英雄', '無頭騎士', '鍊鋸人', '清音社', '新石記', '四月謊言', 'Z鋼', '鋼鍊', '夢幻島']
+        drama: ['紙房子', '絕命毒師', '痞子英雄', '越獄風雲', '城市的主宰', '東京罪惡', '黑道家族', '火線', '巔峰對決2023、24', 'PROUDCE 48', '大谷翔平:超越夢想', '切爾諾貝利', '勇者義彥'],
+        animation: ['銀魂', '烏龍派出所', '探險活寶', '鋼彈SEED', '賽馬娘OVA', 'U149', '少女與戰車', '五等分', '未聞花名', '四月妹妹', '涼宮', '魯路修', '法蘭秀秀', '入間同學', '我內心的糟糕念頭', '農夫戰紀', '天國大魔境', '躍動青春', '我家英雄', '無頭騎士', '鍊鋸人', '清音社', '新石記', '四月謊言', 'Z鋼', '鋼鍊', '夢幻島']
     };
 
     // 載入保存的項目或初始數據
@@ -46,6 +49,68 @@ document.addEventListener('DOMContentLoaded', function() {
         if (confirm('確定要重置清單嗎？這將刪除所有更改並恢復到初始狀態。')) {
             localStorage.removeItem('watchList');
             location.reload();
+        }
+    });
+
+    // 輸出片單功能
+    exportButton.addEventListener('click', function() {
+        const items = JSON.parse(localStorage.getItem('watchList'));
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(items));
+        const downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "watchlist.json");
+        document.body.appendChild(downloadAnchorNode);
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    });
+
+    // 讀取片單功能
+    importButton.addEventListener('click', function() {
+        importFile.click();
+    });
+
+    importFile.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    let items = JSON.parse(e.target.result);
+                    
+                    // 檢查並轉換格式
+                    if (!items.movie && !items.drama && !items.animation) {
+                        // 假設是簡單的標題列表
+                        items = {
+                            movie: items.movie || [],
+                            drama: items.drama || [],
+                            animation: items.animation || []
+                        };
+                    }
+                    
+                    // 確保每個項目都有正確的格式
+                    ['movie', 'drama', 'animation'].forEach(category => {
+                        items[category] = items[category].map(item => {
+                            if (typeof item === 'string') {
+                                return { title: item, highlighted: false };
+                            } else if (typeof item === 'object') {
+                                return { 
+                                    title: item.title || item.name || '',
+                                    highlighted: !!item.highlighted
+                                };
+                            }
+                            return null;
+                        }).filter(item => item !== null);
+                    });
+    
+                    localStorage.setItem('watchList', JSON.stringify(items));
+                    loadItems();
+                    alert('片單已成功讀取');
+                } catch (error) {
+                    alert('讀取失敗，請確保文件格式正確');
+                    console.error('Import error:', error);
+                }
+            };
+            reader.readAsText(file);
         }
     });
 
